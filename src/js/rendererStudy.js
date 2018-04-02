@@ -14,6 +14,8 @@ export default class rendererStudy{
         this.HEIGHT = 1080;
         this.planeA = null;
         this.planeB = null;
+        this.planeC = null;
+        this.planeD = null;
         this.renderer = null;
         this.init();
     }
@@ -52,12 +54,35 @@ export default class rendererStudy{
 
 
 
-        let planeBGeo = new THREE.PlaneBufferGeometry(1480,280,2,2);
+        let planeBGeo = new THREE.PlaneBufferGeometry(840,280,2,2);
         let planeBMat = new THREE.MeshBasicMaterial({color:0x63C331,side:THREE.DoubleSide});
 
         this.planeB = new THREE.Mesh(planeBGeo,planeBMat);
         this.planeB.position.set(40+planeBGeo.parameters.width/2,this.HEIGHT-planeBGeo.parameters.height/2-120,0);
         this.scene.add(this.planeB);
+
+
+        let planeDGeo = new THREE.PlaneBufferGeometry(840,280,2,2);
+        let planeDMat = new THREE.MeshBasicMaterial({color:0xA443A7,side:THREE.DoubleSide});
+
+        this.planeD = new THREE.Mesh(planeDGeo,planeDMat);
+        this.planeD.position.set(920+planeDGeo.parameters.width/2,this.HEIGHT-planeDGeo.parameters.height/2-120,0);
+        this.scene.add(this.planeD);
+
+
+
+
+        let planeCGeo = new THREE.PlaneBufferGeometry(1480,280,2,2);
+        let planeCMat = new THREE.MeshBasicMaterial({color:0x73D0D2,side:THREE.DoubleSide});
+
+        this.planeC = new THREE.Mesh(planeCGeo,planeCMat);
+        this.planeC.position.set(40+planeCGeo.parameters.width/2,planeCGeo.parameters.height/2+360,0);
+        this.scene.add(this.planeC);
+
+
+
+
+
 
 
 
