@@ -1,6 +1,6 @@
 'use strict'
 import * as THREE from 'three'
-// console.log(particleTex);
+
 export default class rendererStudy{
     constructor(manager)
     {
@@ -10,8 +10,10 @@ export default class rendererStudy{
 
         this.camera = null;
         this.scene = null;
-
-        this.mesh = null;
+        this.WIDTH = 1920;
+        this.HEIGHT = 1080;
+        this.planeA = null;
+        this.planeB = null;
         this.renderer = null;
         this.init();
     }
@@ -34,18 +36,34 @@ export default class rendererStudy{
 
 
 
-        this.camera = new THREE.PerspectiveCamera( 90, 1920 / 1080, 5, 10000 );
-        this.camera.position.set(0,0,50);
+        this.camera = new THREE.OrthographicCamera(0, this.WIDTH, 0, this.HEIGHT, 0.001, 10000);
+        this.camera.position.set(0,0,1080/2);
         this.camera.lookAt(new THREE.Vector3(0,0,0));
 
         this.scene = new THREE.Scene();
         
         
-        let boxGeo = new THREE.BoxGeometry(10,10,10);
-        let boxMat = new THREE.MeshBasicMaterial(0xffffff*Math.random());
+        let planeAGeo = new THREE.PlaneBufferGeometry(1480,280,2,2);
+        let planeAMat = new THREE.MeshBasicMaterial({color:0xED2429,side:THREE.DoubleSide});
 
-        this.mesh = new THREE.Mesh(boxGeo,boxMat);
-        this.scene.add(this.mesh);
+        this.planeA = new THREE.Mesh(planeAGeo,planeAMat);
+        this.planeA.position.set(40+planeAGeo.parameters.width/2,40+planeAGeo.parameters.height/2,0);
+        this.scene.add(this.planeA);
+
+
+
+        let planeBGeo = new THREE.PlaneBufferGeometry(1480,280,2,2);
+        let planeBMat = new THREE.MeshBasicMaterial({color:0x63C331,side:THREE.DoubleSide});
+
+        this.planeB = new THREE.Mesh(planeBGeo,planeBMat);
+        this.planeB.position.set(40+planeBGeo.parameters.width/2,this.HEIGHT-planeBGeo.parameters.height/2-120,0);
+        this.scene.add(this.planeB);
+
+
+
+
+
+
 
         this.renderer = new THREE.WebGLRenderer( { antialias: true } );
         this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -107,7 +125,7 @@ export default class rendererStudy{
 
     update=()=> {
 
-        this.mesh.rotateX(0.01);
+        // this.mesh.rotateX(0.01);
 
 
         this.renderer.render( this.scene, this.camera );

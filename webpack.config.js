@@ -13,7 +13,7 @@ module.exports = {
 
         path: `${__dirname}/docs`,
         // 出力ファイル名
-        filename: 'assets/js/jintai_webgl.js'
+        filename: 'assets/js/main.js'
     },
 
     plugins: [
