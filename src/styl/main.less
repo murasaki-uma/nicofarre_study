@@ -1,0 +1,591 @@
+#controller
+{
+  width: 320px;
+  height: 320px;
+  //background: black;
+  border-radius: 50%;
+  border: solid 1px #fff;
+  background-size: cover;
+  position: absolute;
+  right: 20px;
+  bottom: 75px;
+  opacity: 0;
+  display: none;
+  //position: relative;
+  //opacity: 0.3;
+  z-index:99 ;
+}
+.controller_inner
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.bg_image
+{
+  width: 100%;
+  height: 100%;
+  background: url("../js/img/webgl/vitruvius.png");
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: absolute;
+  opacity: 0.7;
+
+}
+
+
+
+
+.organsPos
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.organsPos_point:hover
+{
+  cursor : pointer;
+}
+
+.organsPos_point
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 80px;
+  height: 80px;
+  //background: white;
+  //left: 50%;
+  //bottom: 50%;
+  border-radius: 50%;
+  transform: scale(0.3,0.3);
+  position: absolute;
+  padding: 0;
+  margin: 0;
+
+}
+@w: 320;
+
+.timerLine
+{
+  width:80px;
+  height: 80px;
+  position: absolute;
+  z-index: 101;
+  //scaleX: 0.25;
+  //scaleY: 0.25;
+}
+.gradation_outline
+{
+  width:80px;
+  height: 80px;
+  position: absolute;
+  z-index: 102;
+  background: url("../js/img/webgl/controllerPointBorder.png");
+  background-size: cover;
+
+
+  ////scaleY: 0.25;
+  //background: rgb(180,85,171); /* Old browsers */
+  //background: -moz-linear-gradient(-45deg, rgba(180,85,171,1) 29%, rgba(89,175,205,1) 100%); /* FF3.6-15 */
+  //background: -webkit-linear-gradient(-45deg, rgba(180,85,171,1) 29%,rgba(89,175,205,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  //background: linear-gradient(135deg, rgba(180,85,171,1) 29%,rgba(89,175,205,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.organsPos_smallPoint
+{
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index:104;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-sizing: border-box;
+}
+
+.reset_svg {
+  margin: 0;
+  padding: 0;
+}
+.timer_box
+{
+  transform:rotateZ(-90deg);
+  position: absolute;
+  z-index: 102;
+  stroke-dashoffset: 500;
+}
+.timer {
+  stroke-dasharray:500;
+
+}
+.timerAnimation
+{
+  animation: dash 17s linear
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 500;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.brain
+{
+  top: 13px;
+  right: 86px;
+}
+.bone
+{
+  top: 33px;
+  left: 48px;
+}
+.mascle
+{
+  right: 13px;
+  top: 87px;
+}
+
+.pancreas
+{
+  top: 104px;
+  right: 72px;
+}
+
+.heart
+{
+  left: 83px;
+  top: 103px
+}
+
+.kidney
+{
+  left: 16px;
+  bottom: 90px;
+}
+
+.intestine
+{
+  left: 141px;
+  bottom: 83px;
+
+}
+
+.blood
+{
+  left: 90px;
+  bottom: 13px;
+}
+
+.fat
+{
+  right: 48px;
+  bottom: 28px;
+}
+
+
+
+
+
+.brain>.organsPos_point_bgimg
+{
+  position: absolute;
+  background: url("../js/img/webgl/hover_brain.png");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+
+}
+
+.bone .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_bone.png");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.pancreas .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_pancreas.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.mascle .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_muscle.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.heart .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_heart.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.kidney .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_kidney.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.intestine .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_intestine.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.fat .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_fat.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+.blood .organsPos_point_bgimg {
+  position: absolute;
+  background: url("../js/img/webgl/hover_blood.png");
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  //opacity: 0.0;
+  padding: 0;
+  background-size: cover;
+  margin: 0;
+  //background: url("../js/img/webgl/organsPointBg.png");
+
+}
+
+
+.volumeButton
+{
+  position: absolute;
+  bottom: 87px;
+  left: 30px;
+  width: 20px;
+  height: 14px;
+  z-index: 999;
+}
+
+.volumeButton:hover
+{
+  cursor : pointer;
+}
+
+.volumeButton_inner
+{
+  width:100%;
+  height: 100%;
+  position: relative;
+}
+
+.volumeButton_inner img
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.volume_off
+{
+  display: none;
+}
+
+
+@media screen and (max-width: 1171px)
+{
+  #controller
+  {
+    bottom: 140px;
+  }
+
+  .volumeButton
+  {
+    bottom: 148px;
+  }
+}
+
+
+@media screen and (max-width: 755px)
+{
+  #controller
+  {
+    transform: scale(0.85,0.85);
+    margin-right: 1px;
+  }
+
+  .volumeButton
+  {
+    bottom: 183px;
+  }
+}
+
+.organsPos_point_bgimg
+{
+  z-index: 102;
+  opacity: 0.0;
+
+
+}
+#debug
+{
+  background: none;
+  color: white;
+  z-index: 999;
+  position: absolute;
+  top: 120px;
+  left: 0px;
+  width: 300px;
+  height: 100px;
+  text-align: left;
+
+}
+
+.massege_img
+{
+  position: absolute;
+  width: 134px;
+  height: 134px;
+  border-radius: 50%;
+  z-index: 1;
+  box-sizing: border-box;
+  //border: 1px solid white;
+  transform: scale(0,0);
+  box-shadow:0px 0px 13px 4px #767676;
+}
+
+
+#messages
+{
+  box-sizing: border-box;
+  position: absolute;
+
+  width:300px;
+  height: 150px;
+  left:25px;
+  top: 40%;
+  z-index: 2;
+  list-style: none;
+
+
+}
+
+
+#message_box
+{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.message_box_li
+{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  //background: rgba(0,0,0,0.7);
+  transform: scale(0,0);
+}
+
+.popup
+{
+  display: block;
+}
+.goto_btn
+{
+  position: absolute;
+  width:50%;
+  height:auto;
+  right: 10px;
+  bottom: 10px;
+}
+.message_box_inner
+{
+  width: 100%;
+  height: 100%;
+
+}
+.goto_btn img
+{
+  width:100%;
+  height: auto;
+}
+
+.message_box_anp .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_anp.png");
+  background-size: cover;
+}
+
+.message_box_bmp7  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_bmp7.png");
+  background-size: cover;
+}
+
+
+.message_box_calcitriol  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_calcitriol.png");
+  background-size: cover;
+}
+
+
+.message_box_catepsin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_capthepsin.png");
+  background-size: cover;
+}
+
+
+.message_box_epo  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_epo.png");
+  background-size: cover;
+}
+
+.message_box_fgf  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_fgf.png");
+  background-size: cover;
+}
+
+.message_box_il6  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_il6.png");
+  background-size: cover;
+}
+
+.message_box_incretin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_incretin.png");
+  background-size: cover;
+}
+
+
+.message_box_inslin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_inslin.png");
+  background-size: cover;
+}
+
+
+.message_box_lenin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_lenin.png");
+  background-size: cover;
+}
+
+
+.message_box_leptin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_leptin.png");
+  background-size: cover;
+}
+
+
+
+.message_box_osteocalcin  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_osteocalcin.png");
+  background-size: cover;
+}
+
+
+
+.message_box_vegf  .message_box_inner
+{
+
+  background: url("../js/img/webgl/messagebox_vegf.png");
+  background-size: cover;
+}
+
+
+
+.dg{
+  display: none!important;
+}
