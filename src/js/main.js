@@ -1,16 +1,21 @@
 'use strict'
 
-const DEBUG_MODE = false;
-
-
 
 import '../styl/main.less';
-import RendererStudy from './rendererStudy';
-
+import NicofarreRenderManager from './NicofarreRenderManager';
+import SampleScene from "./sampleScene";
 
 const MainStart =  ()=> {
 
-    const scene = new RendererStudy();
+    const nicofarreRenderManager = new NicofarreRenderManager();
+    const sampleScene = new SampleScene();
+    nicofarreRenderManager.setScene(sampleScene.scene);
+
+
+    nicofarreRenderManager.update();
+
+
+
 
 }
 document.addEventListener("DOMContentLoaded", (event)=> {
