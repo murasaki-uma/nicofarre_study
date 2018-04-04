@@ -9,7 +9,7 @@ const MainStart =  ()=> {
 
     const nicofarreRenderManager = new NicofarreRenderManager();
     const sampleScene = new SampleScene();
-    nicofarreRenderManager.setScene(sampleScene.scene);
+    nicofarreRenderManager.addScene(sampleScene.scene);
 
 
     nicofarreRenderManager.update();

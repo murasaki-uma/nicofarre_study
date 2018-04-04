@@ -1,5 +1,7 @@
 'use strict'
 import * as THREE from 'three'
+const clipTextureVert = require('./GLSL/clipTexture.vert');
+const clipTextureFrag = require('./GLSL/clipTexture.frag');
 
 export default class NicofarreRenderManager{
     constructor(manager)
@@ -24,22 +26,17 @@ export default class NicofarreRenderManager{
         this.nicofarreCamerasNear = 0.1;
         this.nicofarreCamerasFar = 1000;
 
-        this.aspect;
 
         this.planeA_Camera = null;
         this.planeB_Camera = null;
         this.planeC_Camera = null;
         this.planeD_Camera = null;
-        this.planeE_Camera = null;
-        this.planeF_Camera = null;
         this.planeG_Camera = null;
 
         this.renderTargetA = null;
         this.renderTargetC = null;
         this.renderTargetB = null;
         this.renderTargetD = null;
-        this.renderTargetE = null;
-        this.renderTargetF = null;
         this.renderTargetG = null;
         this.nicofarreCameras = [];
         this.renderer = null;
@@ -47,8 +44,13 @@ export default class NicofarreRenderManager{
 
         this.postScene = new THREE.Scene();
 
-        this.nicofarreScene = null;
+        this.nicofarreScenes = [];
+        this.SCENE_NUM = 0;
+        this.key_sceneNext = "ArrowRight";
+        this.key_scenePrev = "ArrowLeft";
         this.init();
+
+
 
 
         window.addEventListener('keydown',this.onKeyDown);
@@ -65,11 +67,11 @@ export default class NicofarreRenderManager{
 
     }
 
-    setScene(scene)
+    addScene(scene)
     {
-        this.nicofarreScene = scene;
+        this.nicofarreScenes.push(scene);
 
-        console.log(this.nicofarreScene);
+        // console.log(this.nicofarreScene);
     }
     init() {
 
@@ -134,13 +136,30 @@ export default class NicofarreRenderManager{
 
 
         let planeEGeo = new THREE.PlaneBufferGeometry(160, 280,2,2);
-        let planeEMat = new THREE.MeshBasicMaterial({color:0x3350A9,side:THREE.DoubleSide});
+        // let planeEMat = new THREE.MeshBasicMaterial({color:0x3350A9,side:THREE.DoubleSide});
+        let planeEMat = new THREE.ShaderMaterial({
+            uniforms:{
+                texture:{value:this.renderTargetB.texture},
+                isLeft:{value:true},
+            },
+            vertexShader:clipTextureVert,
+            fragmentShader:clipTextureFrag,
+            side:THREE.DoubleSide
+        });
         this.planeE = new THREE.Mesh(planeEGeo,planeEMat);
         this.planeE.position.set(1560+planeEGeo.parameters.width/2,40+planeEGeo.parameters.height/2,0);
         this.scene.add(this.planeE);
 
         let planeFGeo = new THREE.PlaneBufferGeometry(160, 280,2,2);
-        let planeFMat = new THREE.MeshBasicMaterial({color:0xF36925,side:THREE.DoubleSide});
+        let planeFMat =  new THREE.ShaderMaterial({
+            uniforms:{
+                texture:{value:this.renderTargetB.texture},
+                isLeft:{value:false},
+            },
+            vertexShader:clipTextureVert,
+            fragmentShader:clipTextureFrag,
+            side:THREE.DoubleSide
+        });
         this.planeF = new THREE.Mesh(planeFGeo,planeFMat);
         this.planeF.position.set(1560+planeFGeo.parameters.width/2,360+planeFGeo.parameters.height/2,0);
         this.scene.add(this.planeF);
@@ -184,6 +203,22 @@ export default class NicofarreRenderManager{
         if(e.key == 's')
         {
             this.saveCanvas('image/png');
+        }
+
+        try {
+            if (e.key == this.key_sceneNext) {
+                this.SCENE_NUM++;
+                this.checkSceneNum();
+            }
+            if (e.key == this.key_scenePrev) {
+
+                this.SCENE_NUM--;
+                this.checkSceneNum();
+            }
+        } catch (e)
+
+        {
+            console.log(e);
         }
     }
 
@@ -312,14 +347,30 @@ export default class NicofarreRenderManager{
     rendererNico()
     {
 
-        this.renderer.render(this.nicofarreScene,this.planeA_Camera,this.renderTargetA);
-        this.renderer.render(this.nicofarreScene,this.planeB_Camera,this.renderTargetB);
-        this.renderer.render(this.nicofarreScene,this.planeC_Camera,this.renderTargetC);
-        this.renderer.render(this.nicofarreScene,this.planeD_Camera,this.renderTargetD);
-        this.renderer.render(this.nicofarreScene,this.planeG_Camera,this.renderTargetG);
+        this.renderer.render(this.nicofarreScenes[this.SCENE_NUM],this.planeA_Camera,this.renderTargetA);
+        this.renderer.render(this.nicofarreScenes[this.SCENE_NUM],this.planeB_Camera,this.renderTargetB);
+        this.renderer.render(this.nicofarreScenes[this.SCENE_NUM],this.planeC_Camera,this.renderTargetC);
+        this.renderer.render(this.nicofarreScenes[this.SCENE_NUM],this.planeD_Camera,this.renderTargetD);
+        this.renderer.render(this.nicofarreScenes[this.SCENE_NUM],this.planeG_Camera,this.renderTargetG);
 
 
         // this.planeB.material.map = this.renderTargetB.texture
+
+    }
+
+
+
+    checkSceneNum = () =>
+    {
+        if(this.SCENE_NUM <0)
+        {
+            this.SCENE_NUM = this.nicofarreScenes.length-1;
+        }
+
+        if(this.SCENE_NUM >= this.nicofarreScenes.length)
+        {
+            this.SCENE_NUM = 0;
+        }
 
     }
 
