@@ -170,8 +170,9 @@ export default class NicofarreRenderManager{
         let planeGGeo = new THREE.PlaneBufferGeometry(98 , 170,2,2);
         let planeGMat = new THREE.MeshBasicMaterial({color:0xffffff,side:THREE.DoubleSide,map:this.renderTargetG.texture});
         this.planeG = new THREE.Mesh(planeGGeo,planeGMat);
+        this.planeG.rotateZ(Math.PI);
         this.planeG.position.set(this.WIDTH-160+planeGGeo.parameters.width/2,40+planeGGeo.parameters.height/2,0);
-        this.planeG_Camera = new THREE.PerspectiveCamera(Math.tan(98/170)*360, 98/170,this.nicofarreCamerasNear,this.nicofarreCamerasFar);
+        this.planeG_Camera = new THREE.PerspectiveCamera(59.156, 98/170,this.nicofarreCamerasNear,this.nicofarreCamerasFar);
 
         this.planeG_Camera.lookAt(new THREE.Vector3(0,1,0));
         // this.planeG_Camera.rotateZ(Math.PI/2);
